@@ -223,6 +223,48 @@ A:
 
 ---
 
+## 🔧 環境工具規範
+
+> **核心原則：用對的工具，不要弄髒系統**
+
+| 操作類型 | 正確工具 | 禁止使用 |
+|----------|----------|----------|
+| Python | `uv`, `uvx` | pip, conda, 系統 Python |
+| Node.js | `nvm`, `bun`, `npx` | sudo npm install -g |
+| 套件安裝 | `brew` | apt, yum, sudo |
+| GitHub | `gh` CLI | GitHub MCP Server |
+| 容器 | `docker` | 重新安裝 runtime |
+
+### 正確範例
+
+```bash
+# Python
+uv pip install package
+uv run script.py
+uvx some-tool
+
+# JavaScript
+bun install
+bun run dev
+npx create-next-app
+
+# 套件
+brew install ffmpeg
+
+# GitHub
+gh repo create
+gh pr create
+```
+
+### 為什麼這樣做？
+
+1. **不用 sudo** — AI 不會動到系統根目錄
+2. **版本隔離** — 每個專案有獨立環境
+3. **乾淨整潔** — 不會留下垃圾檔案
+4. **AI 友善** — 工具標準化，AI 不會亂試
+
+---
+
 ## 🔗 相關 Skills
 
 - **auto-tidy**: 事後整理（如果沒放對）
